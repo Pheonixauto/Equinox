@@ -45,6 +45,8 @@ namespace Equinox.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new CustomerMap());
             modelBuilder.ApplyConfiguration(new DepartmentMap());
             modelBuilder.ApplyConfiguration(new EmployeeSkillMap());
+            modelBuilder.ApplyConfiguration(new EmployeeLearningMap());
+
 
 
 

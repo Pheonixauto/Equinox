@@ -29,5 +29,7 @@ namespace Equinox.Domain.Models
         public ICollection<Relative> Relatives { get; private set; }
         public ICollection<Salary> Salaries { get; private set; }
         public ICollection<EmployeeSkill> EmployeeSkills { get; private set; }
+        public ICollection<EmployeeLearning> EmployeeLearnings { get; private set; }
+
     }
 }
