@@ -26,5 +26,8 @@ namespace Equinox.Domain.Models
         public DateTime BirthDate { get; private set; }
         public Guid? DepartmentId { get; private set; }
         public Department Department { get; private set; }
+        public ICollection<Relative> Relatives { get; private set; }
+        public ICollection<Salary> Salaries { get; private set; }
+        public ICollection<EmployeeSkill> EmployeeSkills { get; private set; }
     }
 }

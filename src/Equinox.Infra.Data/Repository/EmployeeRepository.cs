@@ -31,5 +31,11 @@ namespace Equinox.Infra.Data.Repository
         {
             Db.Dispose();
         }
+
+        public async Task<Employee> GetByEmail(string email)
+        {
+            return await DbSet.AsNoTracking().FirstOrDefaultAsync(c => c.Email == email);
+
+        }
     }
 }

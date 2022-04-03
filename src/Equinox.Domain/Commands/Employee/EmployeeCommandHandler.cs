@@ -1,4 +1,5 @@
-﻿using Equinox.Domain.Interfaces;
+﻿using Equinox.Domain.Commands.Employee.Events;
+using Equinox.Domain.Interfaces;
 using FluentValidation.Results;
 using MediatR;
 using NetDevPack.Messaging;
@@ -23,13 +24,13 @@ namespace Equinox.Domain.Commands.Employee
 
             var employee = new Models.Employee(Guid.NewGuid(), message.Name, message.Email, message.BirthDate, message.DepartmentId);
 
-            //if (await _employeeRepository.GetByEmail(customer.Email) != null)
-            //{
-            //    AddError("The customer e-mail has already been taken.");
-            //    return ValidationResult;
-            //}
+            if (await _employeeRepository.GetByEmail(employee.Email) != null)
+            {
+                AddError("The customer e-mail has already been taken.");
+                return ValidationResult;
+            }
 
-            //employee.AddDomainEvent(new EmployeeRegisteredEvent(customer.Id, customer.Name, customer.Email, customer.BirthDate));
+            employee.AddDomainEvent(new EmployeeRegisteredEvent(employee.Id, employee.Name, employee.Email, employee.BirthDate, employee.DepartmentId));
 
             _employeeRepository.Add(employee);
 

@@ -10,6 +10,8 @@ namespace Equinox.Domain.Interfaces
 {
     public interface IEmployeeRepository : IRepository<Employee>
     {
+        Task<Employee> GetByEmail(string email);
+
         void Add(Employee employee);
     }
 }

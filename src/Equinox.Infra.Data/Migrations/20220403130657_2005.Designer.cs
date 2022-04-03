@@ -4,6 +4,7 @@ using Equinox.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Equinox.Infra.Data.Migrations
 {
     [DbContext(typeof(EquinoxContext))]
-    partial class EquinoxContextModelSnapshot : ModelSnapshot
+    [Migration("20220403130657_2005")]
+    partial class _2005
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,24 +97,6 @@ namespace Equinox.Infra.Data.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Equinox.Domain.Models.EmployeeSkill", b =>
-                {
-                    b.Property<Guid>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SkillId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Rating")
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("EmployeeId", "SkillId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("EmployeeSkills");
-                });
-
             modelBuilder.Entity("Equinox.Domain.Models.Relative", b =>
                 {
                     b.Property<Guid>("Id")
@@ -138,45 +122,6 @@ namespace Equinox.Infra.Data.Migrations
                     b.ToTable("Relatives");
                 });
 
-            modelBuilder.Entity("Equinox.Domain.Models.Salary", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("BasicSalary")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Tax")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Salaries");
-                });
-
-            modelBuilder.Entity("Equinox.Domain.Models.Skill", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Skills");
-                });
-
             modelBuilder.Entity("Equinox.Domain.Models.Employee", b =>
                 {
                     b.HasOne("Equinox.Domain.Models.Department", "Department")
@@ -186,40 +131,10 @@ namespace Equinox.Infra.Data.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("Equinox.Domain.Models.EmployeeSkill", b =>
-                {
-                    b.HasOne("Equinox.Domain.Models.Employee", "Employee")
-                        .WithMany("EmployeeSkills")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Equinox.Domain.Models.Skill", "Skill")
-                        .WithMany("EmployeeSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Skill");
-                });
-
             modelBuilder.Entity("Equinox.Domain.Models.Relative", b =>
                 {
                     b.HasOne("Equinox.Domain.Models.Employee", "Employee")
                         .WithMany("Relatives")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("Equinox.Domain.Models.Salary", b =>
-                {
-                    b.HasOne("Equinox.Domain.Models.Employee", "Employee")
-                        .WithMany("Salaries")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -234,16 +149,7 @@ namespace Equinox.Infra.Data.Migrations
 
             modelBuilder.Entity("Equinox.Domain.Models.Employee", b =>
                 {
-                    b.Navigation("EmployeeSkills");
-
                     b.Navigation("Relatives");
-
-                    b.Navigation("Salaries");
-                });
-
-            modelBuilder.Entity("Equinox.Domain.Models.Skill", b =>
-                {
-                    b.Navigation("EmployeeSkills");
                 });
 #pragma warning restore 612, 618
         }

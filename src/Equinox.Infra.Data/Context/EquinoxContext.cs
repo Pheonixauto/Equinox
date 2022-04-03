@@ -26,6 +26,11 @@ namespace Equinox.Infra.Data.Context
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
 
+        public DbSet<Relative> Relatives { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<EmployeeSkill> EmployeeSkills { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,6 +44,8 @@ namespace Equinox.Infra.Data.Context
 
             modelBuilder.ApplyConfiguration(new CustomerMap());
             modelBuilder.ApplyConfiguration(new DepartmentMap());
+            modelBuilder.ApplyConfiguration(new EmployeeSkillMap());
+
 
 
             base.OnModelCreating(modelBuilder);
