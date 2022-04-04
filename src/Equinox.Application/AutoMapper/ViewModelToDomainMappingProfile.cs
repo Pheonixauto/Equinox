@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Equinox.Application.ViewModels;
 using Equinox.Domain.Commands;
+using Equinox.Domain.Commands.Department;
 using Equinox.Domain.Commands.Employee;
 
 namespace Equinox.Application.AutoMapper
@@ -16,6 +17,13 @@ namespace Equinox.Application.AutoMapper
 
             CreateMap<EmployeeViewModel, RegisterNewEmployeeCommand>()
                .ConstructUsing(c => new RegisterNewEmployeeCommand(c.Name, c.Email, c.BirthDate,c.DepartmentId));
+            CreateMap<EmployeeViewModel, UpdateEmployeeCommand>()
+               .ConstructUsing(c => new UpdateEmployeeCommand(c.Id, c.Name, c.Email, c.BirthDate,c.DepartmentId));
+
+            CreateMap<DepartmentViewModel, RegisterNewDepartmentCommand>()
+              .ConstructUsing(c => new RegisterNewDepartmentCommand(c.Name));
+            CreateMap<DepartmentViewModel, UpdateDepartmentCommand>()
+              .ConstructUsing(c => new UpdateDepartmentCommand(c.Id, c.Name));
         }
     }
 }

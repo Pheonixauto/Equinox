@@ -32,10 +32,30 @@ namespace Equinox.Infra.Data.Repository
             Db.Dispose();
         }
 
+        public async Task<IEnumerable<Employee>> GetAll()
+        {
+            return await DbSet.ToListAsync();
+        }
+
         public async Task<Employee> GetByEmail(string email)
         {
             return await DbSet.AsNoTracking().FirstOrDefaultAsync(c => c.Email == email);
 
+        }
+
+        public async Task<Employee> GetById(Guid id)
+        {
+            return await DbSet.FindAsync(id);
+        }
+
+        public void Remove(Employee employee)
+        {
+            DbSet.Remove(employee);
+        }
+
+        public void Update(Employee employee)
+        {
+            DbSet.Update(employee);
         }
     }
 }

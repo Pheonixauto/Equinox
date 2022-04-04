@@ -9,11 +9,11 @@ namespace Equinox.Domain.Models
 {
     public class Department : Entity, IAggregateRoot
     {
-        public Department(Guid id, string name, ICollection<Employee> employees)
+        public Department(Guid id, string name)
         {
             Id = id;
             Name = name;
-            Employees = employees;
+         
 
         }
 

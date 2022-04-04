@@ -1,4 +1,5 @@
-﻿using Equinox.Application.ViewModels;
+﻿using Equinox.Application.EventSourcedNormalizers.Employee;
+using Equinox.Application.ViewModels;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,14 @@ namespace Equinox.Application.Interfaces
 {
     public interface IEmployeeAppService : IDisposable
     {
+        Task<EmployeeViewModel> GetById(Guid id);
+        Task<IEnumerable<EmployeeViewModel>> GetAll();
+
         Task<ValidationResult> Register(EmployeeViewModel employeeViewModel);
+        Task<ValidationResult> Update(EmployeeViewModel employeeViewModel);
+        Task<ValidationResult> Remove(Guid id);
+
+        Task<IList<EmployeeHistoryData>> GetAllHistory(Guid id);
 
     }
 }
