@@ -25,7 +25,6 @@ namespace Equinox.Infra.Data.Context
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
-
         public DbSet<Relative> Relatives { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<Skill> Skills { get; set; }

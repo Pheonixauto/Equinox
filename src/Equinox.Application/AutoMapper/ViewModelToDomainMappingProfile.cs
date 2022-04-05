@@ -4,6 +4,7 @@ using Equinox.Domain.Commands;
 using Equinox.Domain.Commands.Department;
 using Equinox.Domain.Commands.Employee;
 using Equinox.Domain.Commands.Relative;
+using Equinox.Domain.Commands.Salary;
 
 namespace Equinox.Application.AutoMapper
 {
@@ -30,6 +31,9 @@ namespace Equinox.Application.AutoMapper
              .ConstructUsing(c => new RegisterNewRelativeCommand(c.Name, c.Email, c.BirthDate,c.EmployeeId));
             CreateMap<RelativeViewModel, UpdateRelativeCommand>()
                 .ConstructUsing(c => new UpdateRelativeCommand(c.Id,c.Name,c.Email,c.BirthDate,c.EmployeeId));
+
+            CreateMap<SalaryViewModel, RegisterNewSalaryCommand>()
+                .ConstructUsing(c => new RegisterNewSalaryCommand(c.DateTime,c.BasicSalary,c.Tax,c.EmployeeId));
         }
     }
 }
