@@ -28,6 +28,8 @@ namespace Equinox.Application.AutoMapper
 
             CreateMap<RelativeViewModel, RegisterNewRelativeCommand>()
              .ConstructUsing(c => new RegisterNewRelativeCommand(c.Name, c.Email, c.BirthDate,c.EmployeeId));
+            CreateMap<RelativeViewModel, UpdateRelativeCommand>()
+                .ConstructUsing(c => new UpdateRelativeCommand(c.Id,c.Name,c.Email,c.BirthDate,c.EmployeeId));
         }
     }
 }

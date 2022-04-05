@@ -42,5 +42,20 @@ namespace Equinox.Infra.Data.Repository
         {
             return await DbSet.AsNoTracking().FirstOrDefaultAsync(c => c.Email == email);
         }
+
+        public async Task<Relative> GetById(Guid id)
+        {
+            return await DbSet.FindAsync(id);
+        }
+
+        public void Remove(Relative relative)
+        {
+            DbSet.Remove(relative);
+        }
+
+        public void Update(Relative relative)
+        {
+            DbSet.Update(relative);
+        }
     }
 }

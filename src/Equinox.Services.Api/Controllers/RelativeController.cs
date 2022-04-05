@@ -19,6 +19,13 @@ namespace Equinox.Services.Api.Controllers
         {
             return await _relativeAppService.GetAll();
         }
+
+        [AllowAnonymous]
+        [HttpGet("relative-management/{id:guid}")]
+        public async Task<RelativeViewModel> Get(Guid id)
+        {
+            return await _relativeAppService.GetById(id);
+        }
         //[CustomAuthorize("Customers", "Write")]
         [AllowAnonymous]
 
@@ -26,6 +33,21 @@ namespace Equinox.Services.Api.Controllers
         public async Task<IActionResult> Post([FromBody] RelativeViewModel relativeAppService)
         {
             return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _relativeAppService.Register(relativeAppService));
+        }
+        //[CustomAuthorize("Customers", "Write")]
+        [AllowAnonymous]
+
+        [HttpPut("relative-management")]
+        public async Task<IActionResult> Put([FromBody] RelativeViewModel relativeAppService)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _relativeAppService.Update(relativeAppService));
+        }
+        [AllowAnonymous]
+        //[CustomAuthorize("Employee", "Remove")]
+        [HttpDelete("relative-management")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return CustomResponse(await _relativeAppService.Remove(id));
         }
     }
 }

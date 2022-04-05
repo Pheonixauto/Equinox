@@ -12,8 +12,11 @@ namespace Equinox.Domain.Interfaces
     {
         Task<IEnumerable<Relative>> GetAll();
         Task<Relative> GetByEmail(string email);
+        Task<Relative> GetById(Guid id);
 
         void Add(Relative relative);
+        void Update(Relative relative);
+        void Remove(Relative relative);
 
     }
 }

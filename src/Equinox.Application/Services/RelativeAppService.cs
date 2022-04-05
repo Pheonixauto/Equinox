@@ -38,13 +38,30 @@ namespace Equinox.Application.Services
 
         public async Task<IEnumerable<RelativeViewModel>> GetAll()
         {
-           return _mapper.Map<IEnumerable<RelativeViewModel>>(await _relativeRepository.GetAll());
+            return _mapper.Map<IEnumerable<RelativeViewModel>>(await _relativeRepository.GetAll());
+        }
+
+        public async Task<RelativeViewModel> GetById(Guid id)
+        {
+            return _mapper.Map<RelativeViewModel>(await _relativeRepository.GetById(id));
         }
 
         public async Task<ValidationResult> Register(RelativeViewModel relativeViewModel)
         {
             var registerCommand = _mapper.Map<RegisterNewRelativeCommand>(relativeViewModel);
             return await _mediator.SendCommand(registerCommand);
+        }
+
+        public async Task<ValidationResult> Remove(Guid id)
+        {
+            var removeCommand = new RemoveRelativeCommand(id);
+            return await _mediator.SendCommand(removeCommand);
+        }
+
+        public async Task<ValidationResult> Update(RelativeViewModel relativeViewModel)
+        {
+            var updateCommand = _mapper.Map<UpdateRelativeCommand>(relativeViewModel);
+            return await _mediator.SendCommand(updateCommand);
         }
     }
 }
