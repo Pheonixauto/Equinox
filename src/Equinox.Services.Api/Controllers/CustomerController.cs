@@ -43,7 +43,9 @@ namespace Equinox.Services.Api.Controllers
             return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _customerAppService.Register(customerViewModel));
         }
 
-        [CustomAuthorize("Customers", "Write")]
+        //[CustomAuthorize("Customers", "Write")]
+        [AllowAnonymous]
+
         [HttpPut("customer-management")]
         public async Task<IActionResult> Put([FromBody]CustomerViewModel customerViewModel)
         {
