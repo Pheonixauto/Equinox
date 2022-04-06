@@ -47,5 +47,18 @@ namespace Equinox.Application.Services
             var registerCommand = _mapper.Map<RegisterNewSalaryCommand>(salaryViewModel);
             return await _mediator.SendCommand(registerCommand);
         }
+
+        public async Task<ValidationResult> Remove(Guid id)
+        {
+            var removeCommand = new RemoveSalaryCommand(id);
+            return await _mediator.SendCommand(removeCommand);
+
+        }
+
+        public async Task<ValidationResult> Update(SalaryViewModel salaryViewModel)
+        {
+            var updateCommand = _mapper.Map<UpdateSalaryCommand>(salaryViewModel);
+            return await _mediator.SendCommand(updateCommand);
+        }
     }
 }

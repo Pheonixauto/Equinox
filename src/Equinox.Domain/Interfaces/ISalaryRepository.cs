@@ -13,5 +13,7 @@ namespace Equinox.Domain.Interfaces
         Task<IEnumerable<Salary>> GetAll();
         Task<Salary> GetById(Guid id);
         void Add(Salary salary);
+        void Update(Salary salary);
+        void Remove(Salary salary);
     }
 }

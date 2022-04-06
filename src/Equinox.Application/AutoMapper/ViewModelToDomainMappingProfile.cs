@@ -34,6 +34,8 @@ namespace Equinox.Application.AutoMapper
 
             CreateMap<SalaryViewModel, RegisterNewSalaryCommand>()
                 .ConstructUsing(c => new RegisterNewSalaryCommand(c.DateTime,c.BasicSalary,c.Tax,c.EmployeeId));
+            CreateMap<SalaryViewModel, UpdateSalaryCommand>()
+                .ConstructUsing(c => new UpdateSalaryCommand(c.Id, c.DateTime, c.BasicSalary, c.Tax, c.EmployeeId));
         }
     }
 }

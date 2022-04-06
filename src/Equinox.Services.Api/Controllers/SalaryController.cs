@@ -32,5 +32,21 @@ namespace Equinox.Services.Api.Controllers
         {
             return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _salaryAppService.Register(salaryViewModel));
         }
+        //[CustomAuthorize("Customers", "Write")]
+        [AllowAnonymous]
+
+        [HttpPut("salary-management")]
+        public async Task<IActionResult> Put([FromBody] SalaryViewModel salaryViewModel)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _salaryAppService.Update(salaryViewModel));
+        }
+        [AllowAnonymous]
+
+        //[CustomAuthorize("Employee", "Remove")]
+        [HttpDelete("salary-management")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return CustomResponse(await _salaryAppService.Remove(id));
+        }
     }
 }

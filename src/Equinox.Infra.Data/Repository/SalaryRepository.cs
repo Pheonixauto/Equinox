@@ -44,5 +44,15 @@ namespace Equinox.Infra.Data.Repository
         {
             DbSet.Add(salary);
         }
+
+        public void Update(Salary salary)
+        {
+            DbSet.Update(salary);
+        }
+
+        public void Remove(Salary salary)
+        {
+            DbSet.Remove(salary);
+        }
     }
 }

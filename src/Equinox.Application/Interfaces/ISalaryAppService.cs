@@ -13,6 +13,8 @@ namespace Equinox.Application.Interfaces
         Task<IEnumerable<SalaryViewModel>> GetAll();
         Task<SalaryViewModel> GetById(Guid id);
         Task<ValidationResult>Register(SalaryViewModel salaryViewModel);
+        Task<ValidationResult> Update(SalaryViewModel salaryViewModel);
+        Task<ValidationResult> Remove(Guid id);
 
     }
 }
