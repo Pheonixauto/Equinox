@@ -32,7 +32,7 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<ILearningAppService, LearningAppService>();
             services.AddScoped<IEmployeeLearningAppService, EmployeeLearningAppService>();
             services.AddScoped<ISkillAppService, SkillAppService>();
-
+            services.AddScoped<IEmployeeSkillAppService, EmployeeSkillAppService>();
 
 
 
@@ -55,10 +55,7 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<ILearningRepository, LearningRepository>();
             services.AddScoped<IEmployeeLearningRepository, EmployeeLearningRepository>();
             services.AddScoped<ISkillRepository, SkillRepository>();
-
-
-
-
+            services.AddScoped<IEmployeeSkillRepository, EmployeeSkillRepository>();
 
             services.AddScoped<EquinoxContext>();
 
