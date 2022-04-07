@@ -7,6 +7,7 @@ using Equinox.Domain.Commands.EmployeeLearning;
 using Equinox.Domain.Commands.Learning;
 using Equinox.Domain.Commands.Relative;
 using Equinox.Domain.Commands.Salary;
+using Equinox.Domain.Commands.Skill;
 
 namespace Equinox.Application.AutoMapper
 {
@@ -48,6 +49,11 @@ namespace Equinox.Application.AutoMapper
                 .ConstructUsing(c => new RegisterNewEmployeeLearningCommand(c.EmployeeId, c.LearningId, c.Major, c.Qualification));
             CreateMap<EmployeeLearningViewModel, UpdateEmployeeLearningCommand>()
                 .ConstructUsing(c => new UpdateEmployeeLearningCommand(c.EmployeeId, c.LearningId, c.Major, c.Qualification));
+
+            CreateMap<SkillViewModel, RegisterNewSkillCommand>()
+                .ConstructUsing(c => new RegisterNewSkillCommand(c.Id, c.Name));
+            CreateMap<SkillViewModel, UpdateSkillCommand>()
+                .ConstructUsing(c => new UpdateSkillCommand(c.Name));
         }
     }
 }
