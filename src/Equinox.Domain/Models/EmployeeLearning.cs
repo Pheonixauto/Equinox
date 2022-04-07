@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace Equinox.Domain.Models
 {
-    public class EmployeeLearning : IAggregateRoot
+    public class EmployeeLearning :IAggregateRoot
     {
         public EmployeeLearning(Guid employeeId, Guid learningId, string major, string qualification)
         {
-
+            EmployeeId = employeeId;
+            LearningId = learningId;
+            Major = major;
+            Qualification = qualification;
         }
         protected EmployeeLearning() { }
         public Guid EmployeeId { get; private set; }

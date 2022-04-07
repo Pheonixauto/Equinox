@@ -3,6 +3,7 @@ using Equinox.Application.ViewModels;
 using Equinox.Domain.Commands;
 using Equinox.Domain.Commands.Department;
 using Equinox.Domain.Commands.Employee;
+using Equinox.Domain.Commands.EmployeeLearning;
 using Equinox.Domain.Commands.Learning;
 using Equinox.Domain.Commands.Relative;
 using Equinox.Domain.Commands.Salary;
@@ -42,6 +43,11 @@ namespace Equinox.Application.AutoMapper
                 .ConstructUsing(c => new RegisterNewLearningCommand(c.University));
             CreateMap<LearningViewModel, UpdateLearningCommand>()
                 .ConstructUsing(c => new UpdateLearningCommand(c.Id,c.University));
+
+            CreateMap<EmployeeLearningViewModel, RegisterNewEmployeeLearningCommand>()
+                .ConstructUsing(c => new RegisterNewEmployeeLearningCommand(c.EmployeeId, c.LearningId, c.Major, c.Qualification));
+            CreateMap<EmployeeLearningViewModel, UpdateEmployeeLearningCommand>()
+                .ConstructUsing(c => new UpdateEmployeeLearningCommand(c.EmployeeId, c.LearningId, c.Major, c.Qualification));
         }
     }
 }

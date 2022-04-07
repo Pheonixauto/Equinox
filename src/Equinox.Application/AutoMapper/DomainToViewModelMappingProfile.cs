@@ -14,6 +14,7 @@ namespace Equinox.Application.AutoMapper
             CreateMap<Relative, RelativeViewModel>();
             CreateMap<Salary, SalaryViewModel>();
             CreateMap<Learning,LearningViewModel>();
+            CreateMap<EmployeeLearning, EmployeeLearningViewModel>();
         }
     }
 }

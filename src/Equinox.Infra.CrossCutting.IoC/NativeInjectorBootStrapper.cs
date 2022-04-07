@@ -30,6 +30,8 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<IRelativeAppService,RelativeAppService>();
             services.AddScoped<ISalaryAppService, SalaryAppService>();
             services.AddScoped<ILearningAppService, LearningAppService>();
+            services.AddScoped<IEmployeeLearningAppService, EmployeeLearningAppService>();
+
 
 
             // Domain - Events
@@ -49,6 +51,8 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<IRelativeRepository,RelativeRepository>();
             services.AddScoped<ISalaryRepository, SalaryRepository>();
             services.AddScoped<ILearningRepository, LearningRepository>();
+            services.AddScoped<IEmployeeLearningRepository, EmployeeLearningRepository>();
+
 
 
 
