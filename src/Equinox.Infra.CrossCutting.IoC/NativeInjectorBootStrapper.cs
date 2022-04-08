@@ -33,6 +33,8 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<IEmployeeLearningAppService, EmployeeLearningAppService>();
             services.AddScoped<ISkillAppService, SkillAppService>();
             services.AddScoped<IEmployeeSkillAppService, EmployeeSkillAppService>();
+            services.AddScoped<IFileCsvService, FileCsvService>();
+
 
 
 
