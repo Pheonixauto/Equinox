@@ -10,12 +10,13 @@ namespace Equinox.Services.Api.Controllers
         {
             _fileCsvService = fileCsvService;
         }
-        [HttpPost("UpLoadFile")]
+        [HttpPost("UpLoadFileEmployeeCsv")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpLoadFileIntoDataBase(IFormFile file)
         {
             var result = await _fileCsvService.AddEmployeeByCsv(file);
             return Ok(result);
         }
+
     }
 }

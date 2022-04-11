@@ -14,6 +14,8 @@ namespace Equinox.Application.Interfaces
         Task<EmployeeViewModel> GetById(Guid id);
         Task<IEnumerable<EmployeeViewModel>> GetAll();
 
+        Task<IEnumerable<EmployeeViewModel>> GetEmailAndId();
+
         Task<ValidationResult> Register(EmployeeViewModel employeeViewModel);
         Task<ValidationResult> Update(EmployeeViewModel employeeViewModel);
         Task<ValidationResult> Remove(Guid id);

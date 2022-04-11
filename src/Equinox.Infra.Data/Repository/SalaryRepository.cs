@@ -6,6 +6,7 @@ using NetDevPack.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,6 +54,29 @@ namespace Equinox.Infra.Data.Repository
         public void Remove(Salary salary)
         {
             DbSet.Remove(salary);
+        }
+
+        public async Task<IList<Salary>> GetAllAsync(Expression<Func<Salary, bool>> expression = null, Func<IQueryable<Salary>, IOrderedQueryable<Salary>> orderBy = null, List<string> include = null)
+        {
+            IQueryable<Salary> query =DbSet;
+            if (expression != null)
+            {
+                query = query.Where(expression);
+            }
+
+            if (include != null)
+            {
+                foreach (var incudePropery in include)
+                {
+                    query = query.Include(incudePropery);
+                }
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            return await query.AsNoTracking().ToListAsync();
         }
     }
 }

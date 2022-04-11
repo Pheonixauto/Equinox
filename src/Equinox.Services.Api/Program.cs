@@ -1,6 +1,12 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using EmailService;
+using Equinox.Application.Interfaces;
+using Equinox.Application.Services;
 using Equinox.Infra.CrossCutting.Identity;
 using Equinox.Services.Api.Configurations;
 using MediatR;
+using Microsoft.AspNetCore.Http.Features;
 using NetDevPack.Identity;
 using NetDevPack.Identity.User;
 
@@ -13,6 +19,19 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 // ConfigureServices
+builder.Services.AddSingleton(typeof(IConverter),
+         new SynchronizedConverter(new PdfTools()));
+builder.Services.AddScoped<IHandleFilePDFService, HandleFilePDFService>();
+
+
+builder.Services.AddSingleton(builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.ValueCountLimit = int.MaxValue;
+    o.MultipartBodyLengthLimit = int.MaxValue;
+    o.MemoryBufferThreshold = int.MaxValue;
+});
 
 // WebAPI Config
 builder.Services.AddControllers();

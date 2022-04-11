@@ -1,4 +1,6 @@
-﻿using Equinox.Application.Interfaces;
+﻿using DinkToPdf;
+using DinkToPdf.Contracts;
+using Equinox.Application.Interfaces;
 using Equinox.Application.Services;
 using Equinox.Domain.Commands;
 using Equinox.Domain.Core.Events;
@@ -10,6 +12,8 @@ using Equinox.Infra.Data.EventSourcing;
 using Equinox.Infra.Data.Repository;
 using Equinox.Infra.Data.Repository.EventSourcing;
 using FluentValidation.Results;
+using Jira.Application.Interface;
+using Jira.Application.Service;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using NetDevPack.Mediator;
@@ -34,6 +38,7 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<ISkillAppService, SkillAppService>();
             services.AddScoped<IEmployeeSkillAppService, EmployeeSkillAppService>();
             services.AddScoped<IFileCsvService, FileCsvService>();
+            services.AddScoped<IHttpClientJiraService, HttpClientJiraService>();
 
 
 

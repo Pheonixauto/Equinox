@@ -56,6 +56,14 @@ namespace Equinox.Application.Services
             return _mapper.Map<EmployeeViewModel>(employee);
         }
 
+        public async Task<IEnumerable<EmployeeViewModel>> GetEmailAndId()
+        {
+            var employees = _mapper.Map<IEnumerable<EmployeeViewModel>>(await _employeeRepository.GetAll());
+            var result = employees.Select(c => new EmployeeViewModel { Id = c.Id, Email = c.Email });
+            return result;
+
+        }
+
         public async Task<ValidationResult> Register(EmployeeViewModel employeeViewModel)
         {
             var registerCommand = _mapper.Map<RegisterNewEmployeeCommand>(employeeViewModel);
